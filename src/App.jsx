@@ -8,7 +8,7 @@ import { Header } from './HEADER/header';
 export const App = () => {
   const [query, setQuery] = useState('');
 
-  let visibleMovies = [...moviesFromServer];
+  let visibleMovies = moviesFromServer;
   const normalizeText = text => text.trim().toLowerCase();
 
   const updateQuery = normalizeText(query);
