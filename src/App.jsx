@@ -8,14 +8,16 @@ import { Header } from './HEADER/header';
 export const App = () => {
   const [query, setQuery] = useState('');
 
-  let visibleMove = [...moviesFromServer];
+  let visibleMovies = [...moviesFromServer];
   const normalizeText = text => text.trim().toLowerCase();
 
-  if (normalizeText(query)) {
-    visibleMove = moviesFromServer.filter(
+  const updateQuery = normalizeText(query);
+
+  if (updateQuery) {
+    visibleMovies = moviesFromServer.filter(
       movie =>
-        normalizeText(movie.title).includes(normalizeText(query)) ||
-        normalizeText(movie.description).includes(normalizeText(query)),
+        normalizeText(movie.title).includes(updateQuery) ||
+        normalizeText(movie.description).includes(updateQuery),
     );
   }
 
@@ -27,7 +29,7 @@ export const App = () => {
             setQuery(newQuery);
           }}
         />
-        <MoviesList movies={visibleMove} />
+        <MoviesList movies={visibleMovies} />
       </div>
 
       <div className="sidebar">Sidebar goes here</div>
